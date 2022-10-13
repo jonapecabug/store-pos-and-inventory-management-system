@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 //middleware
 app.use(cors());
@@ -53,20 +53,14 @@ app.get("/products/:id", async (req, res) => {
 //update a product
 app.put("/products/:id", async (req, res) => {
   try {
-    const { product_id } = req.params;
+    const { id } = req.params;
     const { product_name, product_description, product_price, product_stocks } =
       req.body;
     const updateProduct = await pool.query(
-      "UPDATE products SET product_name = $1, product_description = $2, product_price = $3, product_stocks = $4 WHERE product_id = $5",
-      [
-        product_name,
-        product_description,
-        product_price,
-        product_stocks,
-        product_id,
-      ]
+      "UPDATE products SET product_name = $1, product_description = $2, product_price = $3, product_stocks = $4 WHERE product_id = $5 RETURNING *;",
+      [product_name, product_description, product_price, product_stocks, id]
     );
-    res.json("Product is updated!");
+    res.json(updateProduct.rows[0]);
   } catch (error) {
     console.error(error.message);
   }
