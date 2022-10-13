@@ -8,7 +8,6 @@ app.use(cors());
 app.use(express.json()); //req.body
 
 //routes//
-
 //create a product
 app.post("/products", async(req, res) => {
     try {
