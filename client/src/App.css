@@ -1,38 +1,101 @@
+body {
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  position: absolute;
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  background-color: #293846;
+}
+
+.home-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-self: space-between;
+  padding: 20px;
+}
+
+/* SideNavigation */
+.Sidebar {
+  height: 100%;
+  width: 15%;
+  background-color: #344a5f;
+  margin: 0;
+  padding: 0;
+}
+
+.SidebarList {
+  height: auto;
+  padding: 0;
+  width: 100%;
+}
+
+.Profile {
   color: white;
+  text-align: center;
+  height: 8rem;
+  width: 100%;
+  padding-top: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.Profile p {
+  margin: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.SidebarList .row {
+  color: white;
+  width: 100%;
+  height: 5.5rem;
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.SidebarList .row:hover {
+  cursor: pointer;
+  background-color: #293846;
+}
+
+.SidebarList #active {
+  background-color: #293846;
+}
+
+.row #icon {
+  flex: 30%;
+  display: grid;
+  place-items: center;
+}
+
+.row #title {
+  flex: 70%;
+  font-weight: bold;
+  place-items: center;
+}
+
+/* Add Product */
+.ProductContainer {
+  width: 30%;
+  height: 100%;
+  color: black;
+  padding: 30px;
+  border: 2px solid black;
+  background-color: white;
+}
+
+/* Product List */
+.ProductList {
+  width: 70%;
+  height: 100%;
+  color: black;
+  padding: 20px;
 }
