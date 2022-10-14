@@ -9,32 +9,32 @@ import LogoutIcon from "@mui/icons-material/Logout";
 export const SidebarData = [
   {
     title: "Shop",
-    icon: <StorefrontIcon sx={{ fontSize: 50 }} />,
+    icon: <StorefrontIcon sx={{ fontSize: 35 }} />,
     link: "/",
   },
   {
     title: "Manage Products",
-    icon: <ShoppingCartIcon sx={{ fontSize: 50 }} />,
+    icon: <ShoppingCartIcon sx={{ fontSize: 35 }} />,
     link: "/ManageProducts",
   },
   {
     title: "Customer",
-    icon: <GroupIcon sx={{ fontSize: 50 }} />,
+    icon: <GroupIcon sx={{ fontSize: 35 }} />,
     link: "/Customer",
   },
   {
     title: "Manage Customer",
-    icon: <ManageAccountsIcon sx={{ fontSize: 50 }} />,
+    icon: <ManageAccountsIcon sx={{ fontSize: 35 }} />,
     link: "/ManageCustomer",
   },
   {
     title: "Report",
-    icon: <ReceiptLongIcon sx={{ fontSize: 50 }} />,
+    icon: <ReceiptLongIcon sx={{ fontSize: 35 }} />,
     link: "/Report",
   },
   {
     title: "Log-out",
-    icon: <LogoutIcon sx={{ fontSize: 50 }} />,
+    icon: <LogoutIcon sx={{ fontSize: 35 }} />,
     link: "/Customer",
   },
 ];

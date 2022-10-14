@@ -1,11 +1,11 @@
 import React from "react";
 import AddProduct from "../components/AddProduct";
-import ProductList from "../components/ProductList";
+import ManageList from "../components/ManageList";
 
 const ManageProducts = () => {
   return (
     <div className="home-wrapper">
-      <ProductList />
+      <ManageList />
       <AddProduct />
     </div>
   );
