@@ -1,21 +1,6 @@
-import React, { useEffect, useContext } from "react";
-import ProductsFinder from "../apis/ProductsFinder";
-import { ProductsContext } from "../context/ProductsContext";
+import React from "react";
 
-const ProductList = (props) => {
-  // eslint-disable-next-line no-unused-vars
-  const { products, setProducts } = useContext(ProductsContext);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await ProductsFinder.get("/");
-        setProducts(response.data);
-      } catch (err) {}
-    };
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+const ManageList = () => {
   return (
     <div className="ProductList">
       <div className="list-group">
@@ -26,7 +11,8 @@ const ProductList = (props) => {
               <th scope="col">Description</th>
               <th scope="col">Price</th>
               <th scope="col">Available</th>
-              <th scope="col">Buy</th>
+              <th scope="col">Update</th>
+              <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -36,7 +22,10 @@ const ProductList = (props) => {
               <td>16.00</td>
               <td>12</td>
               <td>
-                <button className="btn btn-success">Buy</button>
+                <button className="btn btn-warning">Update</button>
+              </td>
+              <td>
+                <button className="btn btn-danger">Delete</button>
               </td>
             </tr>
             <tr>
@@ -45,7 +34,10 @@ const ProductList = (props) => {
               <td>16.00</td>
               <td>12</td>
               <td>
-                <button className="btn btn-success">Buy</button>
+                <button className="btn btn-warning">Update</button>
+              </td>
+              <td>
+                <button className="btn btn-danger">Delete</button>
               </td>
             </tr>
           </tbody>
@@ -55,4 +47,4 @@ const ProductList = (props) => {
   );
 };
 
-export default ProductList;
+export default ManageList;

@@ -17,12 +17,15 @@ const OrderDetails = () => {
           <input type="text" className="form-control"></input>
           <label>Product Stocks:</label>
           <input type="text" className="form-control"></input>
-          <button className="btn btn-primary" type="button">
-            Credit
-          </button>
-          <button className="btn btn-primary" type="button">
-            Purchase
-          </button>
+          <br />
+          <div className="d-grid gap-2 col-6 mx-auto">
+            <button className="btn btn-primary me-md-2" type="button">
+              Add to Credit
+            </button>
+            <button className="btn btn-primary" type="button">
+              Purchase
+            </button>
+          </div>
         </div>
       </form>
     </div>
