@@ -1,10 +1,10 @@
 import React from "react";
 
-const AddProduct = () => {
+const OrderDetails = () => {
   return (
     <div className="ProductContainer">
       <p>
-        <b>Manage Products</b>
+        <b>Order Details</b>
       </p>
       <form>
         <div className="form-col">
@@ -29,4 +29,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default OrderDetails;
