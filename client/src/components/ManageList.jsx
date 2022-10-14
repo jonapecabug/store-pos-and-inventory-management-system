@@ -39,7 +39,7 @@ const ManageList = (props) => {
                     <td>₱ {product.product_price}</td>
                     <td>{product.product_stocks}</td>
                     <td>
-                      <button className="btn btn-primary">Update</button>
+                      <button className="btn btn-success">Update</button>
                     </td>
                     <td>
                       <button className="btn btn-secondary">Delete</button>
