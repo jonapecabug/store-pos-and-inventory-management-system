@@ -20,10 +20,7 @@ const AddProduct = () => {
           <br />
           <div className="d-grid gap-2 col-6 mx-auto">
             <button className="btn btn-primary me-md-2" type="button">
-              Add to Credit
-            </button>
-            <button className="btn btn-primary" type="button">
-              Purchase
+              Add Product
             </button>
           </div>
         </div>
