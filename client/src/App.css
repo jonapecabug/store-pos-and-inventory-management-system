@@ -1,16 +1,35 @@
 body {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .App {
-  width: 100vw;
-  height: 100vw;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  background-color: #293846;
 }
 
+.home-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-self: space-between;
+  padding: 20px;
+}
+
+/* SideNavigation */
 .Sidebar {
   height: 100%;
-  width: 250px;
-  background-color: #2f4050;
+  width: 15%;
+  background-color: #344a5f;
+  margin: 0;
+  padding: 0;
 }
 
 .SidebarList {
@@ -61,4 +80,22 @@ body {
   flex: 70%;
   font-weight: bold;
   place-items: center;
+}
+
+/* Add Product */
+.ProductContainer {
+  width: 30%;
+  height: 100%;
+  color: black;
+  padding: 30px;
+  border: 2px solid black;
+  background-color: white;
+}
+
+/* Product List */
+.ProductList {
+  width: 70%;
+  height: 100%;
+  color: black;
+  padding: 20px;
 }
