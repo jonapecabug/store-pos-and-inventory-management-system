@@ -19,11 +19,8 @@ const AddProduct = () => {
           <input type="text" className="form-control"></input>
           <br />
           <div className="d-grid gap-2 col-6 mx-auto">
-            <button className="btn btn-primary me-md-2" type="button">
-              Add to Credit
-            </button>
-            <button className="btn btn-primary" type="button">
-              Purchase
+            <button className="btn btn-success me-md-2" type="button">
+              Add Product
             </button>
           </div>
         </div>
