@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import ProductsFinder from "../apis/ProductsFinder";
+import { ProductsContext } from "../context/ProductsContext";
 
 const AddProduct = () => {
+  const { AddProducts } = useContext(ProductsContext);
+  const [productname, setProductname] = useState("");
+  const [productdescription, setProductdescription] = useState("");
+  const [productprice, setProductprice] = useState("");
+  const [productstocks, setProductstocks] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await ProductsFinder.post("/", {
+        product_name: productname,
+        product_description: productdescription,
+        product_price: productprice,
+        product_stocks: productstocks,
+      });
+      AddProducts(response.data);
+      // console.log(response);
+    } catch (error) {}
+  };
+
   return (
     <div className="ProductContainer">
       <p>
@@ -9,17 +31,45 @@ const AddProduct = () => {
       <form>
         <div className="form-col">
           <label>Product Name:</label>
-          <input type="text" className="form-control"></input>
+          <input
+            value={productname}
+            onChange={(e) => setProductname(e.target.value)}
+            type="text"
+            className="form-control"
+            placeholder="product name"
+          ></input>
           <label>Product Description:</label>
           <br></br>
-          <textarea id="w3review" name="w3review" rows="4" cols="35"></textarea>
+          <textarea
+            value={productdescription}
+            onChange={(e) => setProductdescription(e.target.value)}
+            rows="4"
+            cols="35"
+            placeholder="description"
+          ></textarea>
           <label>Product Price:</label>
-          <input type="text" className="form-control"></input>
+          <input
+            value={productprice}
+            onChange={(e) => setProductprice(e.target.value)}
+            type="text"
+            className="form-control"
+            placeholder="price"
+          ></input>
           <label>Product Stocks:</label>
-          <input type="text" className="form-control"></input>
+          <input
+            value={productstocks}
+            onChange={(e) => setProductstocks(e.target.value)}
+            type="text"
+            className="form-control"
+            placeholder="stocks"
+          ></input>
           <br />
           <div className="d-grid gap-2 col-6 mx-auto">
-            <button className="btn btn-primary me-md-2" type="button">
+            <button
+              onClick={handleSubmit}
+              type="submit"
+              className="btn btn-primary me-md-2"
+            >
               Add Product
             </button>
           </div>
