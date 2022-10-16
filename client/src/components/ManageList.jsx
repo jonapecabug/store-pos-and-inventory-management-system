@@ -30,22 +30,23 @@ const ManageList = (props) => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => {
-              return (
-                <tr>
-                  <td>{product.product_name}</td>
-                  <td>{product.product_description}</td>
-                  <td>₱ {product.product_price}</td>
-                  <td>{product.product_stocks}</td>
-                  <td>
-                    <button className="btn btn-warning">Update</button>
-                  </td>
-                  <td>
-                    <button className="btn btn-danger">Delete</button>
-                  </td>
-                </tr>
-              );
-            })}
+            {products &&
+              products.map((product) => {
+                return (
+                  <tr key={product.product_id}>
+                    <td>{product.product_name}</td>
+                    <td>{product.product_description}</td>
+                    <td>₱ {product.product_price}</td>
+                    <td>{product.product_stocks}</td>
+                    <td>
+                      <button className="btn btn-info">Update</button>
+                    </td>
+                    <td>
+                      <button className="btn btn-warning">Delete</button>
+                    </td>
+                  </tr>
+                );
+              })}
 
             {/* <tr>
               <td>Coca-Cola</td>
