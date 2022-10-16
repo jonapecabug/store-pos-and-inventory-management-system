@@ -10,3 +10,13 @@ CREATE TABLE products(
 
 ALTER TABLE products
 ALTER COLUMN product_price SET DATA TYPE numeric;
+
+CREATE TABLE users(
+    user_id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    username VARCHAR(255) NOT NULL,
+    user_email VARCHAR(255) NOT NULL,
+    user_password VARCHAR(255) NOT NULL
+); 
+
+INSERT INTO users(username, user_email, user_password) 
+VALUES('JonapeCabug_v1','cabugjonape@gmail.com','password');
