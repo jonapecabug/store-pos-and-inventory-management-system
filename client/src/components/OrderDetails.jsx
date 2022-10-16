@@ -8,14 +8,14 @@ const OrderDetails = () => {
       </p>
       <form>
         <div className="form-col">
-          <label>Product Name:</label>
+          <label>Customer Name:</label>
           <input type="text" className="form-control"></input>
-          <label>Product Description:</label>
+          <label>Order List:</label>
           <br></br>
           <textarea id="w3review" name="w3review" rows="4" cols="35"></textarea>
-          <label>Product Price:</label>
+          <label>Number of Items:</label>
           <input type="text" className="form-control"></input>
-          <label>Product Stocks:</label>
+          <label>Total Price:</label>
           <input type="text" className="form-control"></input>
           <br />
           <div className="d-grid gap-2 col-6 mx-auto">
