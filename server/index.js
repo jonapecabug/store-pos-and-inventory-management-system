@@ -10,6 +10,10 @@ app.use(cors());
 app.use(express.json()); //req.body
 
 //routes//
+
+//register and log-in routes
+app.use("/auth", require("./routes/jwtAuth"));
+
 //create a product
 app.post("/products", async (req, res) => {
   try {
