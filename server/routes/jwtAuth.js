@@ -38,4 +38,43 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// log-in route
+
+router.post("/login", async (req, res) => {
+  try {
+    //1. destructure the req.body
+
+    const { username, user_password } = req.body;
+
+    //2. check if user doesn't exist (if not throw an error)
+
+    const user = await pool.query("SELECT * FROM users WHERE username = $1", [
+      username,
+    ]);
+    if (user.rows.length === 0) {
+      return res.status(401).json("Username or Password is incorrect.");
+    }
+
+    //3. check if password matches the database password
+
+    const validPassword = await bcrypt.compare(
+      user_password,
+      user.rows[0].user_password
+    );
+
+    if (!validPassword) {
+      return res.status(401).json("Username or Password is incorrect.");
+    }
+
+    //4. give the jwt token
+
+    const token = jwtGenerator(user.rows[0].user_id);
+
+    res.json({ token });
+  } catch (error) {
+    console.error(err.message);
+    res.status(500).send("Server error!");
+  }
+});
+
 module.exports = router;
