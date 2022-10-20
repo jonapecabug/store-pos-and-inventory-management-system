@@ -14,6 +14,9 @@ app.use(express.json()); //req.body
 //register and log-in routes
 app.use("/auth", require("./routes/jwtAuth"));
 
+//dashboard route
+app.use("/dashboard", require("./routes/dashboard"));
+
 //create a product
 app.post("/products", async (req, res) => {
   try {
