@@ -33,8 +33,8 @@ export const SidebarData = [
     link: "/Report",
   },
   {
-    title: "Log-out",
+    title: "Log-Out",
     icon: <LogoutIcon sx={{ fontSize: 35 }} />,
-    link: "/Customer",
+    link: "/logout",
   },
 ];
