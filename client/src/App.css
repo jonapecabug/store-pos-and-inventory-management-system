@@ -20,7 +20,6 @@ body {
   width: 100%;
   display: flex;
   justify-self: space-between;
-  padding: 20px;
 }
 
 /* SideNavigation */
