@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import { SidebarData } from "./SidebarData";
 import FaceIcon from "@mui/icons-material/Face";
 // import LogoutIcon from "@mui/icons-material/Logout";
 
 const SideNavigation = ({ setAuth }) => {
+  const [name, setName] = useState("");
+
+  async function getName() {
+    try {
+      const response = await fetch("http://localhost:5000/dashboard", {
+        method: "GET",
+        headers: { token: localStorage.token },
+      });
+
+      const parseRes = await response.json();
+
+      setName(parseRes.username);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
+  useEffect(() => {
+    getName();
+  });
+
   return (
     <div className="Sidebar">
       <ul className="SidebarList">
         <div className="Profile">
           <FaceIcon sx={{ fontSize: 80 }} />
-          <p>Cashier Name</p>
+          <p>{name}</p>
         </div>
         {SidebarData.map((val, key) => {
           return (
