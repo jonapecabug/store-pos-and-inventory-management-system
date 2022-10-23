@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import OrderDetails from "../components/OrderDetails";
 import ProductList from "../components/ProductList";
 import SideNavigation from "../components/SideNavigation";
