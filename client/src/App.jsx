@@ -8,7 +8,7 @@ import {
 import Home from "./routes/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-// import Logout from "./components/logout";
+import LogOut from "./components/logOut";
 import ManageProducts from "./routes/ManageProducts";
 import UpdateProducts from "./routes/UpdateProducts";
 import { ProductsContextProvider } from "./context/ProductsContext";
@@ -45,14 +45,14 @@ const App = () => {
     );
   };
 
-  // // function authenticate logout
-  // const authLogout = (props) => {
-  //   return isAuthenticated ? (
-  //     <Logout {...props} setAuth={setAuth} />
-  //   ) : (
-  //     <Navigate to="/login" />
-  //   );
-  // };
+  // function authenticate logout
+  const authLogout = (props) => {
+    return isAuthenticated ? (
+      <LogOut {...props} setAuth={setAuth} />
+    ) : (
+      <Navigate to="/login" />
+    );
+  };
 
   return (
     <Router>
@@ -63,7 +63,7 @@ const App = () => {
           <Route path="/" element={authHome()} />
           <Route path="/products/:id/Update" element={<UpdateProducts />} />
           <Route path="/ManageProducts" element={<ManageProducts />} />
-          {/* <Route path="/logout" element={authLogout()} /> */}
+          <Route path="/logOut" element={authLogout()} />
         </Routes>
       </ProductsContextProvider>
     </Router>
