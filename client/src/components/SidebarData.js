@@ -4,7 +4,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import GroupIcon from "@mui/icons-material/Group";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
-// import LogoutIcon from "@mui/icons-material/Logout";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 export const SidebarData = [
   {
@@ -31,5 +31,10 @@ export const SidebarData = [
     title: "Report",
     icon: <ReceiptLongIcon sx={{ fontSize: 35 }} />,
     link: "/Report",
+  },
+  {
+    title: "Log-out",
+    icon: <LogoutIcon sx={{ fontSize: 35 }} />,
+    link: "/logOut",
   },
 ];

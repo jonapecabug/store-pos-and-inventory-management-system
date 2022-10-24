@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import { SidebarData } from "./SidebarData";
 import FaceIcon from "@mui/icons-material/Face";
-import LogoutIcon from "@mui/icons-material/Logout";
+// import LogoutIcon from "@mui/icons-material/Logout";
 
 const SideNavigation = ({ setAuth }) => {
   const [name, setName] = useState("");
@@ -22,11 +22,11 @@ const SideNavigation = ({ setAuth }) => {
     }
   }
 
-  const logout = (e) => {
-    e.preventDefault();
-    localStorage.removeItem("token");
-    setAuth(false);
-  };
+  // const logout = (e) => {
+  //   e.preventDefault();
+  //   localStorage.removeItem("token");
+  //   setAuth(false);
+  // };
 
   useEffect(() => {
     getName();
@@ -54,12 +54,12 @@ const SideNavigation = ({ setAuth }) => {
             </li>
           );
         })}
-        <li>
+        {/* <li>
           <div id="icon">
             <LogoutIcon sx={{ fontSize: 35 }} />
           </div>
           <button onClick={(e) => logout(e)}>Log-Out</button>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
