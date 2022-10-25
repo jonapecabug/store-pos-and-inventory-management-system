@@ -30,7 +30,7 @@ const SideNavigation = ({ setAuth }) => {
 
   useEffect(() => {
     getName();
-  });
+  }, []);
 
   return (
     <div className="Sidebar">
