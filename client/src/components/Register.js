@@ -29,10 +29,10 @@ const Register = ({ setAuth }) => {
       if (parseRes.token) {
         localStorage.setItem("token", parseRes.token);
         setAuth(true);
-        toast.success("Registered Successfully!");
+        toast.success("Registered Successfully!", { theme: "colored" });
       } else {
         setAuth(false);
-        toast.error(parseRes);
+        toast.error(parseRes, { theme: "colored" });
       }
     } catch (err) {
       console.error(err.message);

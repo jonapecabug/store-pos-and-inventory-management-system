@@ -18,13 +18,11 @@ router.post("/register", validInfo, async (req, res) => {
       [user_email]
     );
 
-    if (user.rows.length !== 0) {
+    if (user.rows.length > 0) {
       return res.status(401).json("User already exists.");
     }
     //3. Bcrypt user password
-    const saltRound = 10;
-    const salt = await bcrypt.genSalt(saltRound);
-
+    const salt = await bcrypt.genSalt(10);
     const bcryptPassword = await bcrypt.hash(user_password, salt);
 
     //4. enter the new user inside the database
@@ -35,7 +33,7 @@ router.post("/register", validInfo, async (req, res) => {
 
     //5. generate jwt token
     const token = jwtGenerator(newUser.rows[0].user_id);
-    res.json({ token });
+    return res.json({ token });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error!");
@@ -45,13 +43,11 @@ router.post("/register", validInfo, async (req, res) => {
 // log-in route
 
 router.post("/login", validInfo, async (req, res) => {
+  //1. destructure the req.body
+  const { user_email, user_password } = req.body;
+
   try {
-    //1. destructure the req.body
-
-    const { user_email, user_password } = req.body;
-
     //2. check if user doesn't exist (if not throw an error)
-
     const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [
       user_email,
     ]);
@@ -73,7 +69,7 @@ router.post("/login", validInfo, async (req, res) => {
     //4. give the jwt token
 
     const token = jwtGenerator(user.rows[0].user_id);
-    res.json({ token });
+    return res.json({ token });
   } catch (error) {
     console.error(err.message);
     res.status(500).send("Server error!");
