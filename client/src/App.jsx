@@ -10,19 +10,14 @@ import {
 import Home from "./routes/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import LogOut from "./components/logOut";
+// import Logout from "./components/logout";
+// import SideNavigation from "./components/SideNavigation";
 import ManageProducts from "./routes/ManageProducts";
 import UpdateProducts from "./routes/UpdateProducts";
 import { ProductsContextProvider } from "./context/ProductsContext";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // function that toggles true/false authentication
-  const setAuth = (boolean) => {
-    setIsAuthenticated(boolean);
-  };
-
-  async function isAuth() {
+  const isAuth = async () => {
     try {
       const response = await fetch("http://localhost:5000/auth/is-verify", {
         method: "GET",
@@ -35,37 +30,21 @@ const App = () => {
     } catch (err) {
       console.error(err.message);
     }
-  }
+  };
 
   useEffect(() => {
     isAuth();
-  });
+  }, []);
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // function that toggles true/false authentication
+  const setAuth = (boolean) => {
+    setIsAuthenticated(boolean);
+  };
 
   //toastify
   const notify = () => {
     toast("Default Notification !");
-
-    toast.success("Success Notification !", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-
-    toast.error("Error Notification !", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
   };
 
   // function for navigating elements on routes
@@ -95,13 +74,13 @@ const App = () => {
   };
 
   // function authenticate logout
-  const authLogout = (props) => {
-    return isAuthenticated ? (
-      <LogOut {...props} setAuth={setAuth} notify={notify} />
-    ) : (
-      <Navigate to="/login" />
-    );
-  };
+  // const authLogout = (props) => {
+  //   return isAuthenticated ? (
+  //     <SideNavigation {...props} setAuth={setAuth} notify={notify} />
+  //   ) : (
+  //     <Navigate to="/login" />
+  //   );
+  // };
 
   return (
     <Router>
@@ -112,7 +91,7 @@ const App = () => {
           <Route path="/" element={authHome()} />
           <Route path="/products/:id/Update" element={<UpdateProducts />} />
           <Route path="/ManageProducts" element={<ManageProducts />} />
-          <Route path="/logOut" element={authLogout()} />
+          {/* <Route path="/" element={authLogout()} /> */}
         </Routes>
       </ProductsContextProvider>
       <ToastContainer />

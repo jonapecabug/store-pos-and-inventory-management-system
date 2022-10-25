@@ -4,12 +4,12 @@ import ProductList from "../components/ProductList";
 import SideNavigation from "../components/SideNavigation";
 import { ProductsContextProvider } from "../context/ProductsContext";
 
-const Home = () => {
+const Home = ({ setAuth }) => {
   return (
     <ProductsContextProvider>
       <div className="App">
         <div className="home-wrapper">
-          <SideNavigation />
+          <SideNavigation setAuth={setAuth} />
           <ProductList />
           <OrderDetails />
         </div>
