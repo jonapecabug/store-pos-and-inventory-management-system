@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,7 +10,7 @@ import {
 import Home from "./routes/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-// import Logout from "./components/logout";
+import LogOut from "./components/logOut";
 import ManageProducts from "./routes/ManageProducts";
 import UpdateProducts from "./routes/UpdateProducts";
 import { ProductsContextProvider } from "./context/ProductsContext";
@@ -19,11 +21,58 @@ const App = () => {
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean);
   };
+
+  async function isAuth() {
+    try {
+      const response = await fetch("http://localhost:5000/auth/is-verify", {
+        method: "GET",
+        headers: { token: localStorage.token },
+      });
+
+      const parseRes = await response.json();
+
+      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
+  useEffect(() => {
+    isAuth();
+  });
+
+  //toastify
+  const notify = () => {
+    toast("Default Notification !");
+
+    toast.success("Success Notification !", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+
+    toast.error("Error Notification !", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
   // function for navigating elements on routes
   // function authenticate login
   const authLogin = (props) => {
     return !isAuthenticated ? (
-      <Login {...props} setAuth={setAuth} />
+      <Login {...props} setAuth={setAuth} notify={notify} />
     ) : (
       <Navigate to="/" />
     );
@@ -31,7 +80,7 @@ const App = () => {
   // function authenticate register
   const authReg = (props) => {
     return !isAuthenticated ? (
-      <Register {...props} setAuth={setAuth} />
+      <Register {...props} setAuth={setAuth} notify={notify} />
     ) : (
       <Navigate to="/login" />
     );
@@ -39,20 +88,20 @@ const App = () => {
   // function authenticate home/dashboard
   const authHome = (props) => {
     return isAuthenticated ? (
-      <Home {...props} setAuth={setAuth} />
+      <Home {...props} setAuth={setAuth} notify={notify} />
     ) : (
       <Navigate to="/login" />
     );
   };
 
-  // // function authenticate logout
-  // const authLogout = (props) => {
-  //   return isAuthenticated ? (
-  //     <Logout {...props} setAuth={setAuth} />
-  //   ) : (
-  //     <Navigate to="/login" />
-  //   );
-  // };
+  // function authenticate logout
+  const authLogout = (props) => {
+    return isAuthenticated ? (
+      <LogOut {...props} setAuth={setAuth} notify={notify} />
+    ) : (
+      <Navigate to="/login" />
+    );
+  };
 
   return (
     <Router>
@@ -63,9 +112,10 @@ const App = () => {
           <Route path="/" element={authHome()} />
           <Route path="/products/:id/Update" element={<UpdateProducts />} />
           <Route path="/ManageProducts" element={<ManageProducts />} />
-          {/* <Route path="/logout" element={authLogout()} /> */}
+          <Route path="/logOut" element={authLogout()} />
         </Routes>
       </ProductsContextProvider>
+      <ToastContainer />
     </Router>
   );
 };
