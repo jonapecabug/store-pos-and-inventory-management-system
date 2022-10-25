@@ -26,7 +26,8 @@ app.post("/products", async (req, res) => {
       "INSERT INTO products(product_name, product_description, product_price, product_stocks) VALUES($1,$2,$3,$4) RETURNING *",
       [product_name, product_description, product_price, product_stocks]
     );
-    res.json(newProduct.rows[0]);
+    res.status(201).json(newProduct.rows[0]);
+    console.log(newProduct.rows[0]);
   } catch (error) {
     console.error(error.message);
   }

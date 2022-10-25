@@ -6,7 +6,7 @@ export const ProductsContextProvider = (props) => {
   const [products, setProducts] = useState([]);
 
   const addProducts = (product) => {
-    setProducts([...products, product]);
+    setProducts([...product, product]);
   };
 
   return (

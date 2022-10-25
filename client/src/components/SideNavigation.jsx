@@ -60,11 +60,11 @@ const SideNavigation = ({ setAuth }) => {
             </li>
           );
         })}
-        <li>
+        <li onClick={(e) => logout(e)} className="row">
           <div id="icon">
             <LogoutIcon sx={{ fontSize: 35 }} />
           </div>
-          <button onClick={(e) => logout(e)}>Log-Out</button>
+          <div id="title">Log-Out</div>
         </li>
       </ul>
     </div>
