@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Login = ({ setAuth }) => {
   const [inputs, setInputs] = useState({
@@ -26,9 +27,14 @@ const Login = ({ setAuth }) => {
 
       const parseRes = await response.json();
 
-      localStorage.setItem("token", parseRes.token);
-
-      setAuth(true);
+      if (parseRes.token) {
+        localStorage.setItem("token", parseRes.token);
+        setAuth(true);
+        toast.success("login successfully!", { theme: "colored" });
+      } else {
+        setAuth(false);
+        toast.error(parseRes, { theme: "colored" });
+      }
     } catch (err) {
       console.error(err.message);
     }
@@ -55,7 +61,9 @@ const Login = ({ setAuth }) => {
           onChange={(e) => onChange(e)}
         />
         <div className="d-grid gap-2 my-3">
-          <button className="btn btn-success">log-in</button>
+          <button onClick={toast} className="btn btn-success">
+            log-in
+          </button>
         </div>
       </form>
       <Link to="/register">Register</Link>
