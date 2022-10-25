@@ -11,7 +11,7 @@ export const SidebarData = [
   {
     title: "Shop",
     icon: <StorefrontIcon sx={{ fontSize: 35 }} />,
-    link: "/",
+    link: "/Home",
   },
   {
     title: "Manage Products",
