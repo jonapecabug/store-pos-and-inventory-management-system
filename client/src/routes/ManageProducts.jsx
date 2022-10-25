@@ -4,12 +4,12 @@ import ManageList from "../components/ManageList";
 import SideNavigation from "../components/SideNavigation";
 import { ProductsContextProvider } from "../context/ProductsContext";
 
-const ManageProducts = () => {
+const ManageProducts = ({ setAuth }) => {
   return (
     <ProductsContextProvider>
       <div className="App">
         <div className="home-wrapper">
-          <SideNavigation />
+          <SideNavigation setAuth={setAuth} />
           <ManageList />
           <AddProduct />
         </div>

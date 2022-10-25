@@ -3,7 +3,7 @@ import ProductsFinder from "../apis/ProductsFinder";
 import { ProductsContext } from "../context/ProductsContext";
 
 const ProductList = (props) => {
-  // eslint-disable-next-line no-unused-vars
+  // fetch the data from the server
   const { products, setProducts } = useContext(ProductsContext);
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +18,7 @@ const ProductList = (props) => {
 
   return (
     <div className="ProductList">
-      <div className="list-group">
+      <div className="tableFixHead">
         <table className="table table-light table-striped table-hover table-bordered">
           <thead className="table-dark">
             <tr>

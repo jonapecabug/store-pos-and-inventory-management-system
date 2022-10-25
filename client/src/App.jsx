@@ -17,6 +17,12 @@ import UpdateProducts from "./routes/UpdateProducts";
 import { ProductsContextProvider } from "./context/ProductsContext";
 
 const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // function that toggles true/false authentication
+  const setAuth = (boolean) => {
+    setIsAuthenticated(boolean);
+  };
+
   const isAuth = async () => {
     try {
       const response = await fetch("http://localhost:5000/auth/is-verify", {
@@ -36,12 +42,6 @@ const App = () => {
     isAuth();
   }, []);
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // function that toggles true/false authentication
-  const setAuth = (boolean) => {
-    setIsAuthenticated(boolean);
-  };
-
   //toastify
   const notify = () => {
     toast("Default Notification !");
@@ -53,7 +53,7 @@ const App = () => {
     return !isAuthenticated ? (
       <Login {...props} setAuth={setAuth} notify={notify} />
     ) : (
-      <Navigate to="/" />
+      <Navigate to="/Home" />
     );
   };
   // function authenticate register
@@ -73,6 +73,15 @@ const App = () => {
     );
   };
 
+  // function authenticate Manage Products
+  // const authManageProducts = (props) => {
+  //   return isAuthenticated ? (
+  //     <ManageProducts {...props} setAuth={setAuth} notify={notify} />
+  //   ) : (
+  //     <Navigate to="/login" />
+  //   );
+  // };
+
   // function authenticate logout
   // const authLogout = (props) => {
   //   return isAuthenticated ? (
@@ -88,10 +97,9 @@ const App = () => {
         <Routes>
           <Route path="/Login" element={authLogin()} />
           <Route path="/Register" element={authReg()} />
-          <Route path="/" element={authHome()} />
-          <Route path="/products/:id/Update" element={<UpdateProducts />} />
+          <Route path="/Home" element={authHome()} />
           <Route path="/ManageProducts" element={<ManageProducts />} />
-          {/* <Route path="/" element={authLogout()} /> */}
+          <Route path="/products/:id/Update" element={<UpdateProducts />} />
         </Routes>
       </ProductsContextProvider>
       <ToastContainer />
