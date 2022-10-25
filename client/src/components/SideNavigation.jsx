@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
 import { SidebarData } from "./SidebarData";
 import FaceIcon from "@mui/icons-material/Face";
-// import LogoutIcon from "@mui/icons-material/Logout";
+import { toast } from "react-toastify";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const SideNavigation = ({ setAuth }) => {
   const [name, setName] = useState("");
 
-  async function getName() {
+  const getName = async () => {
     try {
       const response = await fetch("http://localhost:5000/dashboard", {
         method: "GET",
@@ -20,13 +20,19 @@ const SideNavigation = ({ setAuth }) => {
     } catch (err) {
       console.error(err.message);
     }
-  }
+  };
 
-  // const logout = (e) => {
-  //   e.preventDefault();
-  //   localStorage.removeItem("token");
-  //   setAuth(false);
-  // };
+  const logout = async (e) => {
+    e.preventDefault();
+    try {
+      localStorage.removeItem("token");
+      console.log("token is removed");
+      setAuth(false);
+      toast.success("Logout successfully", { theme: "colored" });
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   useEffect(() => {
     getName();
@@ -54,12 +60,12 @@ const SideNavigation = ({ setAuth }) => {
             </li>
           );
         })}
-        {/* <li>
+        <li>
           <div id="icon">
             <LogoutIcon sx={{ fontSize: 35 }} />
           </div>
           <button onClick={(e) => logout(e)}>Log-Out</button>
-        </li> */}
+        </li>
       </ul>
     </div>
   );
