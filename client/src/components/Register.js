@@ -76,7 +76,7 @@ const Register = ({ setAuth }) => {
             <button className="btn btn-primary">Submit</button>
           </div>
         </form>
-        <Link to="/login">Log-in</Link>
+        <Link to="/login">Go back to Log-in</Link>
       </div>
     </Fragment>
   );
