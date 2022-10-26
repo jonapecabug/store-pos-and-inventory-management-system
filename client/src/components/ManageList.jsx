@@ -16,6 +16,21 @@ const ManageList = (props) => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleDelete = async (product_id) => {
+    try {
+      const response = await ProductsFinder.delete(`/${product_id}`);
+      setProducts(
+        products.filter((product) => {
+          return product.product_id !== product_id;
+        })
+      );
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="ProductList">
       <div className="tableFixHead">
@@ -43,7 +58,12 @@ const ManageList = (props) => {
                       <button className="btn btn-info">Update</button>
                     </td>
                     <td>
-                      <button className="btn btn-warning">Delete</button>
+                      <button
+                        onClick={() => handleDelete(product.product_id)}
+                        className="btn btn-warning"
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 );
