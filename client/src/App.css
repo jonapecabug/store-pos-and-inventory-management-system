@@ -6,6 +6,15 @@ body {
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: rgb(92, 140, 169);
+}
+
 .App {
   position: absolute;
   height: 100%;
