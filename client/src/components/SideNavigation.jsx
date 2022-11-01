@@ -3,9 +3,11 @@ import { SidebarData } from "./SidebarData";
 import FaceIcon from "@mui/icons-material/Face";
 import { toast } from "react-toastify";
 import LogoutIcon from "@mui/icons-material/Logout";
+// import { useNavigate } from "react-router-dom";
 
 const SideNavigation = ({ setAuth }) => {
   const [name, setName] = useState("");
+  // const navigate = useNavigate();
 
   const getName = async () => {
     try {
@@ -23,7 +25,7 @@ const SideNavigation = ({ setAuth }) => {
   };
 
   const logout = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       localStorage.removeItem("token");
       console.log("token is removed");
@@ -32,6 +34,8 @@ const SideNavigation = ({ setAuth }) => {
     } catch (err) {
       console.error(err.message);
     }
+    // window.location.reload();
+    // navigate("/Home");
   };
 
   useEffect(() => {
