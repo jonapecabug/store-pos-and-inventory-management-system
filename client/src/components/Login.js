@@ -66,7 +66,7 @@ const Login = ({ setAuth }) => {
           </button>
         </div>
       </form>
-      <Link to="/register">Register a customer</Link>
+      <Link to="/register">Register</Link>
     </div>
   );
 };
