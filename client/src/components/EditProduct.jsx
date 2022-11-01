@@ -28,10 +28,10 @@ const EditProduct = (props) => {
     // call the fetchData function
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     const updatedProduct = await ProductsFinder.put(`/${id}`, {
       product_name: productname,
@@ -40,7 +40,7 @@ const EditProduct = (props) => {
       product_stocks: productstocks,
     });
     console.log(updatedProduct);
-    navigate(`/ManageProducts`);
+    // navigate(`/ManageProducts`);
   };
 
   const handleBack = () => {

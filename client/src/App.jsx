@@ -64,14 +64,6 @@ const App = () => {
       <Navigate to="/login" />
     );
   };
-  // function authenticate home/dashboard
-  const authHome = (props) => {
-    return isAuthenticated ? (
-      <Home {...props} setAuth={setAuth} notify={notify} />
-    ) : (
-      <Navigate to="/login" />
-    );
-  };
 
   // function authenticate Manage Products
   // const authManageProducts = (props) => {
@@ -81,6 +73,20 @@ const App = () => {
   //     <Navigate to="/login" />
   //   );
   // };
+
+  // function authenticate home/dashboard
+  const authHome = (props) => {
+    return isAuthenticated ? (
+      <Home {...props} setAuth={setAuth} notify={notify} />
+    ) : (
+      <Navigate to="/login" />
+    );
+  };
+
+  //function to route when link is updated
+  // const authUpdate = (props) => {
+  //   return <UpdateProducts {...props} key={window.location.pathname} />
+  //}
 
   // function authenticate logout
   // const authLogout = (props) => {

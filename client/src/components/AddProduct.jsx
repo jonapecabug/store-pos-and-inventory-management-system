@@ -12,7 +12,7 @@ const AddProduct = () => {
   const [productstocks, setProductstocks] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       const response = await ProductsFinder.post("/", {
         product_name: productname,
