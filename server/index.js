@@ -52,7 +52,10 @@ app.get("/products/:id", async (req, res) => {
       [id]
     );
 
+    // res.json("1 product should be returned");
     res.json(product.rows[0]);
+    // res.status(201).json(product.rows[0]);
+    // console.log(product.rows[0]);
   } catch (error) {
     console.error(error.message);
   }
