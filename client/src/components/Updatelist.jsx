@@ -3,7 +3,7 @@ import ProductsFinder from "../apis/ProductsFinder";
 import { ProductsContext } from "../context/ProductsContext";
 import { useNavigate } from "react-router-dom";
 
-const ManageList = (props) => {
+const UpdateList = (props) => {
   // fetch the data from the server
   const { products, setProducts } = useContext(ProductsContext);
   const navigate = useNavigate();
@@ -111,4 +111,4 @@ const ManageList = (props) => {
   );
 };
 
-export default ManageList;
+export default UpdateList;
