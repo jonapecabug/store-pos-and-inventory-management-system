@@ -20,11 +20,22 @@ app.use("/dashboard", require("./routes/dashboard"));
 //create a product
 app.post("/products", async (req, res) => {
   try {
-    const { product_name, product_description, product_price, product_stocks } =
-      req.body;
+    const {
+      product_name,
+      product_description,
+      product_price,
+      product_stocks,
+      category,
+    } = req.body;
     const newProduct = await pool.query(
-      "INSERT INTO products(product_name, product_description, product_price, product_stocks) VALUES($1,$2,$3,$4) RETURNING *",
-      [product_name, product_description, product_price, product_stocks]
+      "INSERT INTO products(product_name, product_description, product_price, product_stocks, category) VALUES($1,$2,$3,$4,$5) RETURNING *",
+      [
+        product_name,
+        product_description,
+        product_price,
+        product_stocks,
+        category,
+      ]
     );
     res.status(201).json(newProduct.rows[0]);
     console.log(newProduct.rows[0]);
@@ -90,6 +101,16 @@ app.delete("/products/:id", async (req, res) => {
     console.log(error.message);
   }
 });
+
+//list of category
+// app.get("/category", async (req, res) => {
+//   try {
+//     const allCategory = await pool.query("SELECT category FROM products");
+//     res.json(allCategory.rows);
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
 
 app.listen(port, () => {
   console.log(`server has started on port ${port}`);
