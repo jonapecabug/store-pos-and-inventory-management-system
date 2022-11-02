@@ -3,7 +3,7 @@ import React, { useEffect, useContext } from "react";
 import { useState } from "react";
 import ProductsFinder from "../apis/ProductsFinder";
 import { ProductsContext } from "../context/ProductsContext";
-import Filter from "./Filter";
+// import Filter from "./Filter";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 const ProductList = (props) => {
@@ -13,8 +13,8 @@ const ProductList = (props) => {
     sorted: "product_name",
     reversed: false,
   });
-
-  const [filterTextValue, setFilterText] = useState("all");
+  const [searchPhrase, setSearchPhrase] = useState("");
+  // const [filterTextValue, setFilterText] = useState("all");
 
   // const filteredProductList = products.filter((product) => {
   //   console.log(filterTextValue);
@@ -24,7 +24,7 @@ const ProductList = (props) => {
     const fetchData = async () => {
       try {
         const response = await ProductsFinder.get("/");
-        // console.log(response);
+        // console.log(response.data);
         setProducts(response.data);
       } catch (err) {}
     };
@@ -32,9 +32,9 @@ const ProductList = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onFilterValueSelected = async (filtervalue) => {
-    setFilterText(filtervalue);
-  };
+  // const onFilterValueSelected = async (filtervalue) => {
+  //   setFilterText(filtervalue);
+  // };
 
   const sortedByName = () => {
     setSorted({
@@ -70,6 +70,44 @@ const ProductList = (props) => {
     setProducts(productsCopy);
   };
 
+  //SEARCH BAR FUNCTION
+  const searchProduct = (e) => {
+    const matchedProducts = products.filter((product) => {
+      // console.log(e.target.value);
+      if (e.target.value === "") {
+        const fetchData = async () => {
+          try {
+            const response = await ProductsFinder.get("/");
+            // console.log(response.data);
+            setProducts(response.data);
+          } catch (err) {}
+        };
+        fetchData();
+      }
+      return product.product_name
+        .toLowerCase()
+        .includes(e.target.value.toLowerCase());
+    });
+    setProducts(matchedProducts);
+    setSearchPhrase(e.target.value);
+  };
+
+  const renderUsers = () => {
+    return products.map((product) => {
+      return (
+        <tr key={product.product_id}>
+          <td>{product.product_name}</td>
+          <td>{product.product_description}</td>
+          <td>₱ {product.product_price}</td>
+          <td>{product.product_stocks}</td>
+          <td>
+            <button className="btn btn-success">Buy</button>
+          </td>
+        </tr>
+      );
+    });
+  };
+
   const renderArrow = () => {
     if (sorted.reversed) {
       return <FaArrowUp />;
@@ -80,8 +118,34 @@ const ProductList = (props) => {
   return (
     <div className="ProductList">
       {/* filter component */}
+      <div className="filter">
+        <div className="form-outline">
+          <div className="filter-result">{products.length} Products</div>
+          <input
+            className="form-control"
+            type="text"
+            placeholder="search products"
+            value={searchPhrase}
+            onChange={searchProduct}
+          />
+        </div>
+        <div className="filter-result">
+          <span>category: </span>
+          <select className="form-select form-select-sm" name="ProductCategory">
+            <option value="all">ALL</option>
+            {products &&
+              products.map((product) => {
+                return (
+                  <option key={product.product_id} value={product.category}>
+                    {product.category}
+                  </option>
+                );
+              })}
+          </select>
+        </div>
+      </div>
 
-      <Filter filterValueSelected={onFilterValueSelected} />
+      {/* <Filter filterValueSelected={onFilterValueSelected} /> */}
       <div className="tableFixHead">
         <table className="table table-light table-striped table-hover table-bordered">
           <thead className="table-dark">
@@ -100,7 +164,8 @@ const ProductList = (props) => {
             </tr>
           </thead>
           <tbody>
-            {products &&
+            {renderUsers()}
+            {/* {products &&
               products.map((product) => {
                 return (
                   <tr key={product.product_id}>
@@ -113,25 +178,7 @@ const ProductList = (props) => {
                     </td>
                   </tr>
                 );
-              })}
-            {/* <tr>
-              <td>Coca-Cola</td>
-              <td>200ml Sakto</td>
-              <td>16.00</td>
-              <td>12</td>
-              <td>
-                <button className="btn btn-success">Buy</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Coca-Cola</td>
-              <td>200ml Sakto</td>
-              <td>16.00</td>
-              <td>12</td>
-              <td>
-                <button className="btn btn-success">Buy</button>
-              </td>
-            </tr> */}
+              })} */}
           </tbody>
         </table>
       </div>
