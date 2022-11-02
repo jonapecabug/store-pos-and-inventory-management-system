@@ -20,3 +20,25 @@ CREATE TABLE users(
 
 INSERT INTO users(username, user_email, user_password) 
 VALUES('JonapeCabug_v1','cabugjonape@gmail.com','password');
+
+ALTER TABLE products
+ADD COLUMN category VARCHAR;
+
+UPDATE products
+SET category = 'alcoholic drinks'
+WHERE product_id = 9;
+
+UPDATE products
+SET category = 'cold drinks'
+WHERE product_id = 3;
+
+UPDATE products
+SET category = 'softdrinks'
+WHERE product_id = 13;
+
+UPDATE products
+SET category = 'softdrinks'
+WHERE product_id = 12;
+
+ALTER TABLE products
+ALTER COLUMN category SET NOT NULL;

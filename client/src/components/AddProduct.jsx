@@ -7,6 +7,7 @@ const AddProduct = () => {
   // const navigate = useNavigate();
   const { AddProducts } = useContext(ProductsContext);
   const [productname, setProductname] = useState("");
+  const [productcategory, setProductcategory] = useState("");
   const [productdescription, setProductdescription] = useState("");
   const [productprice, setProductprice] = useState("");
   const [productstocks, setProductstocks] = useState("");
@@ -16,6 +17,7 @@ const AddProduct = () => {
     try {
       const response = await ProductsFinder.post("/", {
         product_name: productname,
+        category: productcategory,
         product_description: productdescription,
         product_price: productprice,
         product_stocks: productstocks,
@@ -38,6 +40,14 @@ const AddProduct = () => {
             type="text"
             className="form-control"
             placeholder="product name"
+          ></input>
+          <label>Category:</label>
+          <input
+            value={productcategory}
+            onChange={(e) => setProductcategory(e.target.value)}
+            type="text"
+            className="form-control"
+            placeholder="product category"
           ></input>
           <label>Product Description:</label>
           <br></br>
