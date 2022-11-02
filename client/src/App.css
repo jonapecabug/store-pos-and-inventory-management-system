@@ -138,4 +138,5 @@ table {
 
 .filter div {
   flex: 1;
+  padding-right: 0.5rem;
 }
