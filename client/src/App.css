@@ -15,6 +15,10 @@ a:hover {
   color: rgb(92, 140, 169);
 }
 
+span {
+  margin-right: 1rem;
+}
+
 .App {
   position: absolute;
   height: 100%;
@@ -36,7 +40,7 @@ a:hover {
 /* SideNavigation */
 .Sidebar {
   height: 100%;
-  width: 15%;
+  width: 16%;
   background-color: #344a5f;
   margin: 0;
   padding: 0;
@@ -121,4 +125,17 @@ a:hover {
 table {
   border-collapse: collapse;
   width: 100%;
+}
+
+/*Filter products */
+.filter {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0 1rem 0;
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+
+.filter div {
+  flex: 1;
 }

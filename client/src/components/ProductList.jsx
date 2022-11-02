@@ -1,14 +1,30 @@
 import React, { useEffect, useContext } from "react";
+// import { useTransition } from "react";
+import { useState } from "react";
 import ProductsFinder from "../apis/ProductsFinder";
 import { ProductsContext } from "../context/ProductsContext";
+import Filter from "./Filter";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 const ProductList = (props) => {
   // fetch the data from the server
   const { products, setProducts } = useContext(ProductsContext);
+  const [sorted, setSorted] = useState({
+    sorted: "product_name",
+    reversed: false,
+  });
+
+  const [filterTextValue, setFilterText] = useState("all");
+
+  // const filteredProductList = products.filter((product) => {
+  //   console.log(filterTextValue);
+  // });
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await ProductsFinder.get("/");
+        // console.log(response);
         setProducts(response.data);
       } catch (err) {}
     };
@@ -16,15 +32,69 @@ const ProductList = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const onFilterValueSelected = async (filtervalue) => {
+    setFilterText(filtervalue);
+  };
+
+  const sortedByName = () => {
+    setSorted({
+      sorted: "product_name",
+      reversed: !sorted.reversed,
+    });
+    const productsCopy = [...products];
+    productsCopy.sort((productA, productB) => {
+      const fullProductNameA = `${productA.product_name}`;
+      const fullProductNameB = `${productB.product_name}`;
+
+      if (sorted.reversed) {
+        return fullProductNameB.localeCompare(fullProductNameA);
+      }
+
+      return fullProductNameA.localeCompare(fullProductNameB);
+    });
+    setProducts(productsCopy);
+  };
+
+  const sortedByPrice = () => {
+    setSorted({
+      sorted: "product_price",
+      reversed: !sorted.reversed,
+    });
+    const productsCopy = [...products];
+    productsCopy.sort((productA, productB) => {
+      if (sorted.reversed) {
+        return productA.product_price - productB.product_price;
+      }
+      return productB.product_price - productA.product_price;
+    });
+    setProducts(productsCopy);
+  };
+
+  const renderArrow = () => {
+    if (sorted.reversed) {
+      return <FaArrowUp />;
+    }
+    return <FaArrowDown />;
+  };
+
   return (
     <div className="ProductList">
+      {/* filter component */}
+
+      <Filter filterValueSelected={onFilterValueSelected} />
       <div className="tableFixHead">
         <table className="table table-light table-striped table-hover table-bordered">
           <thead className="table-dark">
             <tr>
-              <th scope="col">Name</th>
+              <th onClick={sortedByName} scope="col">
+                <span>Name</span>
+                {sorted.sorted === "product_name" ? renderArrow() : null}
+              </th>
               <th scope="col">Description</th>
-              <th scope="col">Price</th>
+              <th onClick={sortedByPrice} scope="col">
+                <span>Price</span>
+                {sorted.sorted === "product_price" ? renderArrow() : null}
+              </th>
               <th scope="col">Available</th>
               <th scope="col">Buy</th>
             </tr>
