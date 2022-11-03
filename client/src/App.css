@@ -101,17 +101,18 @@ span {
   width: 30%;
   height: 100%;
   color: black;
-  padding: 30px;
+  padding: 1rem;
   border: 2px solid black;
   background-color: white;
+  overflow-y: auto;
 }
 
 /* Product List */
 .ProductList {
   width: 70%;
-  height: 100%;
+  height: 89%;
   color: black;
-  padding: 20px;
+  padding: 10px;
 }
 
 .tableFixHead {
@@ -132,11 +133,22 @@ table {
   color: white;
   display: flex;
   justify-content: space-between;
-  padding: 1rem 0 1rem 0;
+  padding: 0.5rem 0 1rem 0;
   border-bottom: 0.1rem #c0c0c0 solid;
 }
 
 .filter div {
   flex: 1;
   padding-right: 0.5rem;
+}
+
+.add {
+  background-color: #04eb78;
+  width: 1.5rem;
+  margin: 0.5rem;
+}
+
+.remove {
+  background-color: #fb4a40;
+  width: 1.5rem;
 }
