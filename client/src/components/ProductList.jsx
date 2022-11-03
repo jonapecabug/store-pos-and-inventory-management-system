@@ -1,12 +1,11 @@
 import React, { useEffect, useContext } from "react";
-// import { useTransition } from "react";
 import { useState } from "react";
 import ProductsFinder from "../apis/ProductsFinder";
 import { ProductsContext } from "../context/ProductsContext";
-// import Filter from "./Filter";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 const ProductList = (props) => {
+  const { onAdd } = props;
   // fetch the data from the server
   const { products, setProducts } = useContext(ProductsContext);
   const [sorted, setSorted] = useState({
@@ -14,27 +13,17 @@ const ProductList = (props) => {
     reversed: false,
   });
   const [searchPhrase, setSearchPhrase] = useState("");
-  // const [filterTextValue, setFilterText] = useState("all");
-
-  // const filteredProductList = products.filter((product) => {
-  //   console.log(filterTextValue);
-  // });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await ProductsFinder.get("/");
-        // console.log(response.data);
         setProducts(response.data);
       } catch (err) {}
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // const onFilterValueSelected = async (filtervalue) => {
-  //   setFilterText(filtervalue);
-  // };
 
   const sortedByName = () => {
     setSorted({
@@ -101,7 +90,9 @@ const ProductList = (props) => {
           <td>₱ {product.product_price}</td>
           <td>{product.product_stocks}</td>
           <td>
-            <button className="btn btn-success">Buy</button>
+            <button onClick={() => onAdd(product)} className="btn btn-success">
+              Buy
+            </button>
           </td>
         </tr>
       );
@@ -145,7 +136,7 @@ const ProductList = (props) => {
         </div>
       </div>
 
-      {/* <Filter filterValueSelected={onFilterValueSelected} /> */}
+      {/* TABLE AREA */}
       <div className="tableFixHead">
         <table className="table table-light table-striped table-hover table-bordered">
           <thead className="table-dark">
@@ -211,6 +202,7 @@ const ProductList = (props) => {
                 );
               })} */}
           </tbody>
+          <tbody>{renderUsers()}</tbody>
         </table>
       </div>
     </div>
