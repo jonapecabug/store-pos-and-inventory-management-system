@@ -10,10 +10,9 @@ import {
 import Home from "./routes/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-// import Logout from "./components/logout";
-// import SideNavigation from "./components/SideNavigation";
 import ManageProducts from "./routes/ManageProducts";
 import UpdateProducts from "./routes/UpdateProducts";
+import ManageCustomer from "./routes/ManageCustomer";
 import { ProductsContextProvider } from "./context/ProductsContext";
 
 const App = () => {
@@ -65,15 +64,6 @@ const App = () => {
     );
   };
 
-  // function authenticate Manage Products
-  // const authManageProducts = (props) => {
-  //   return isAuthenticated ? (
-  //     <ManageProducts {...props} setAuth={setAuth} notify={notify} />
-  //   ) : (
-  //     <Navigate to="/login" />
-  //   );
-  // };
-
   // function authenticate home/dashboard
   const authHome = (props) => {
     return isAuthenticated ? (
@@ -82,20 +72,6 @@ const App = () => {
       <Navigate to="/login" />
     );
   };
-
-  //function to route when link is updated
-  // const authUpdate = (props) => {
-  //   return <UpdateProducts {...props} key={window.location.pathname} />
-  //}
-
-  // function authenticate logout
-  // const authLogout = (props) => {
-  //   return isAuthenticated ? (
-  //     <SideNavigation {...props} setAuth={setAuth} notify={notify} />
-  //   ) : (
-  //     <Navigate to="/login" />
-  //   );
-  // };
 
   return (
     <Router>
@@ -106,6 +82,7 @@ const App = () => {
           <Route path="/Home" element={authHome()} />
           <Route path="/ManageProducts" element={<ManageProducts />} />
           <Route path="/products/:id/Update" element={<UpdateProducts />} />
+          <Route path="/ManageCostumer" element={<ManageCustomer />} />
         </Routes>
       </ProductsContextProvider>
       <ToastContainer />
