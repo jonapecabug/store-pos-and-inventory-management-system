@@ -122,7 +122,7 @@ const ProductList = (props) => {
         </div>
         <div className="filter-result">
           <span>category: </span>
-          <select className="form-select form-select-sm" name="ProductCategory">
+          <select className="form-select" name="ProductCategory">
             <option value="all">ALL</option>
             {products &&
               products.map((product) => {
