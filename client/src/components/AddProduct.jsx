@@ -29,7 +29,7 @@ const AddProduct = () => {
   return (
     <div className="ProductContainer">
       <p>
-        <b>Manage Products</b>
+        <h3 className="text-center">Manage Products</h3>
       </p>
       <form>
         <div className="form-col">

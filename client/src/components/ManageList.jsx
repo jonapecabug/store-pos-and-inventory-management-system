@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import ProductsFinder from "../apis/ProductsFinder";
 import { ProductsContext } from "../context/ProductsContext";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const ManageList = (props) => {
   // fetch the data from the server
   const { products, setProducts } = useContext(ProductsContext);
+  const [searchPhrase, setSearchPhrase] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
@@ -37,8 +38,60 @@ const ManageList = (props) => {
     navigate(`/products/${product_id}/Update`);
   };
 
+  //SEARCH BAR FUNCTION
+  const searchProduct = (e) => {
+    const matchedProducts = products.filter((product) => {
+      // console.log(e.target.value);
+      if (e.target.value === "") {
+        const fetchData = async () => {
+          try {
+            const response = await ProductsFinder.get("/");
+            // console.log(response.data);
+            setProducts(response.data);
+          } catch (err) {}
+        };
+        fetchData();
+      }
+      return product.product_name
+        .toLowerCase()
+        .includes(e.target.value.toLowerCase());
+    });
+    setProducts(matchedProducts);
+    setSearchPhrase(e.target.value);
+  };
+
   return (
     <div className="ProductList">
+      {/* FILTER AREA */}
+      {/* filter component */}
+      <div className="filter">
+        <div className="form-outline">
+          <div className="filter-result">SEARCH:</div>
+          <input
+            className="form-control"
+            type="text"
+            placeholder="search product"
+            value={searchPhrase}
+            onChange={searchProduct}
+          />
+        </div>
+        {/* <div className="filter-result">
+          <span>category: </span>
+          <select className="form-select" name="ProductCategory">
+            <option value="all">ALL</option>
+            {products &&
+              products.map((product) => {
+                return (
+                  <option key={product.product_id} value={product.category}>
+                    {product.category}
+                  </option>
+                );
+              })}
+          </select>
+        </div> */}
+      </div>
+
+      {/* TABLE AREA */}
       <div className="tableFixHead">
         <table className="table table-light table-striped table-hover table-bordered">
           <thead className="table-dark">

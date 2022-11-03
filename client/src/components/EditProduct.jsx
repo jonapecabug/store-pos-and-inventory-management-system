@@ -50,7 +50,7 @@ const EditProduct = (props) => {
   return (
     <div className="ProductContainer">
       <p>
-        <b>Update Products</b>
+        <h3 className="text-center">Update Products</h3>
       </p>
       <form>
         <div className="form-col">
