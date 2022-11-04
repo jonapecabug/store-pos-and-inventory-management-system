@@ -26,7 +26,7 @@ export const SidebarData = [
   {
     title: "Manage Customer",
     icon: <ManageAccountsIcon sx={{ fontSize: 35 }} />,
-    link: "/ManageCustomer",
+    link: "/EditCustomer",
   },
   {
     title: "Report",
