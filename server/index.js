@@ -112,6 +112,32 @@ app.delete("/products/:id", async (req, res) => {
 //   }
 // });
 
+//create customer
+app.post("/customer", async (req, res) => {
+  try {
+    const { customer_name } = req.body;
+    const newCustomer = await pool.query(
+      "INSERT INTO customer(customer_name) VALUES($1) RETURNING *",
+      [customer_name]
+    );
+    res.status(201).json(newCustomer.rows[0]);
+    // console.log(newCustomer.rows[0]);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+//display all customer
+app.get("/customer", async (req, res) => {
+  try {
+    const allCustomer = await pool.query("SELECT * FROM customer");
+    res.json(allCustomer.rows);
+    console.log(allCustomer.rows[0]);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
 app.listen(port, () => {
   console.log(`server has started on port ${port}`);
 });
