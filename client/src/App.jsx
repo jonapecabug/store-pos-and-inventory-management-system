@@ -12,8 +12,10 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import ManageProducts from "./routes/ManageProducts";
 import UpdateProducts from "./routes/UpdateProducts";
-import ManageCustomer from "./routes/ManageCustomer";
 import { ProductsContextProvider } from "./context/ProductsContext";
+import Customer from "./routes/Customer";
+import EditCustomer from "./routes/EditCustomer";
+import Report from "./routes/Report";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -82,7 +84,9 @@ const App = () => {
           <Route path="/Home" element={authHome()} />
           <Route path="/ManageProducts" element={<ManageProducts />} />
           <Route path="/products/:id/Update" element={<UpdateProducts />} />
-          <Route path="/ManageCostumer" element={<ManageCustomer />} />
+          <Route path="/Customer" element={<Customer />} />
+          <Route path="/EditCustomer" element={<EditCustomer />} />
+          <Route path="/Report" element={<Report />} />
         </Routes>
       </ProductsContextProvider>
       <ToastContainer />
