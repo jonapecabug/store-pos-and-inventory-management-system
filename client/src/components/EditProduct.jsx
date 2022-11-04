@@ -16,7 +16,7 @@ const EditProduct = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await ProductsFinder.get(`/${id}`);
+        const response = await ProductsFinder.get(`/products/${id}`);
         setProductname(response.data.product_name);
         setProductdescription(response.data.product_description);
         setProductprice(response.data.product_price);
@@ -33,7 +33,7 @@ const EditProduct = (props) => {
   const handleSubmit = async (e) => {
     // e.preventDefault();
 
-    const updatedProduct = await ProductsFinder.put(`/${id}`, {
+    const updatedProduct = await ProductsFinder.put(`/products/${id}`, {
       product_name: productname,
       product_description: productdescription,
       product_price: productprice,

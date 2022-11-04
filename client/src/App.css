@@ -115,6 +115,13 @@ span {
   padding: 10px;
 }
 
+.CustomerList {
+  width: 70%;
+  height: 89%;
+  color: black;
+  padding: 10px;
+}
+
 .tableFixHead {
   overflow-y: auto;
   height: 100%;

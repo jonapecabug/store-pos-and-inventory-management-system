@@ -17,7 +17,7 @@ const ProductList = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await ProductsFinder.get("/");
+        const response = await ProductsFinder.get("/products/");
         setProducts(response.data);
       } catch (err) {}
     };
@@ -66,7 +66,7 @@ const ProductList = (props) => {
       if (e.target.value === "") {
         const fetchData = async () => {
           try {
-            const response = await ProductsFinder.get("/");
+            const response = await ProductsFinder.get("/products/");
             // console.log(response.data);
             setProducts(response.data);
           } catch (err) {}
