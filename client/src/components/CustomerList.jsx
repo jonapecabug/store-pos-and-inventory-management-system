@@ -103,8 +103,8 @@ const CustomerList = (props) => {
       return (
         <tr key={customer.customer_id}>
           <td>{customer.customer_name}</td>
-          <td>{customer.purchase_num}</td>
-          <td>{customer.credit_num}</td>
+          <td>₱ {customer.purchase_num}</td>
+          <td>₱ {customer.credit_num}</td>
           <td>{customer.customer_status}</td>
           <td>
             <button onClick={() => onAdd(customer)} className="btn btn-success">
