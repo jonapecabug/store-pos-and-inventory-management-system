@@ -1,20 +1,20 @@
 import React from "react";
-import AddProduct from "../components/AddProduct";
-import ManageList from "../components/ManageList";
+import AddCostumer from "../components/AddCostumer";
+import CustomerList from "../components/CustomerList";
 import SideNavigation from "../components/SideNavigation";
-import { ProductsContextProvider } from "../context/ProductsContext";
+import { CustomerContextProvider } from "../context/CustomerContext";
 
 const EditCustomer = ({ setAuth }) => {
   return (
-    <ProductsContextProvider>
+    <CustomerContextProvider>
       <div className="App">
         <div className="home-wrapper">
           <SideNavigation setAuth={setAuth} />
-          <ManageList />
-          <AddProduct />
+          <CustomerList />
+          <AddCostumer />
         </div>
       </div>
-    </ProductsContextProvider>
+    </CustomerContextProvider>
   );
 };
 

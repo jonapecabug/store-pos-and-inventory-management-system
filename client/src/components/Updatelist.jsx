@@ -11,7 +11,7 @@ const UpdateList = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await ProductsFinder.get("/");
+        const response = await ProductsFinder.get("/products/");
         setProducts(response.data);
         // console.log(response);
       } catch (err) {}
@@ -22,7 +22,7 @@ const UpdateList = (props) => {
 
   const handleDelete = async (product_id) => {
     try {
-      const response = await ProductsFinder.delete(`/${product_id}`);
+      const response = await ProductsFinder.delete(`/products/${product_id}`);
       setProducts(
         products.filter((product) => {
           return product.product_id !== product_id;
@@ -45,7 +45,7 @@ const UpdateList = (props) => {
       if (e.target.value === "") {
         const fetchData = async () => {
           try {
-            const response = await ProductsFinder.get("/");
+            const response = await ProductsFinder.get("/products/");
             // console.log(response.data);
             setProducts(response.data);
           } catch (err) {}
@@ -116,31 +116,6 @@ const UpdateList = (props) => {
                   </tr>
                 );
               })}
-
-            {/* <tr>
-              <td>Coca-Cola</td>
-              <td>200ml Sakto</td>
-              <td>16.00</td>
-              <td>12</td>
-              <td>
-                <button className="btn btn-warning">Update</button>
-              </td>
-              <td>
-                <button className="btn btn-danger">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Coca-Cola</td>
-              <td>200ml Sakto</td>
-              <td>16.00</td>
-              <td>12</td>
-              <td>
-                <button className="btn btn-warning">Update</button>
-              </td>
-              <td>
-                <button className="btn btn-danger">Delete</button>
-              </td>
-            </tr> */}
           </tbody>
         </table>
       </div>

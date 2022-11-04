@@ -15,7 +15,7 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     // e.preventDefault();
     try {
-      const response = await ProductsFinder.post("/", {
+      const response = await ProductsFinder.post("/products/", {
         product_name: productname,
         category: productcategory,
         product_description: productdescription,
