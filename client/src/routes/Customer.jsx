@@ -1,16 +1,19 @@
 import React from "react";
+import PurchaseCredit from "../components/PuchaseCredit";
 import SideNavigation from "../components/SideNavigation";
-import { ProductsContextProvider } from "../context/ProductsContext";
+
+import { CustomerContextProvider } from "../context/CustomerContext";
 
 const Customer = ({ setAuth }) => {
   return (
-    <ProductsContextProvider>
+    <CustomerContextProvider>
       <div className="App">
         <div className="home-wrapper">
           <SideNavigation setAuth={setAuth} />
+          <PurchaseCredit />
         </div>
       </div>
-    </ProductsContextProvider>
+    </CustomerContextProvider>
   );
 };
 
