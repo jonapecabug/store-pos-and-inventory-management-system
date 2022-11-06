@@ -138,6 +138,20 @@ app.get("/customer", async (req, res) => {
   }
 });
 
+//delete a customer
+app.delete("/customer/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteCustomer = await pool.query(
+      "DELETE FROM customer WHERE customer_id = $1",
+      [id]
+    );
+    res.json("Customer is deleted.");
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 app.listen(port, () => {
   console.log(`server has started on port ${port}`);
 });
