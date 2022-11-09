@@ -11,6 +11,7 @@ const Home = ({ setAuth }) => {
     const exist = cartItems.find((x) => x.product_id === product.product_id);
     // console.log(exist);
     // console.log(product.product_id);
+
     if (exist) {
       setCartItems(
         cartItems.map((x) =>

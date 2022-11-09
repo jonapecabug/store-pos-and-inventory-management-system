@@ -8,7 +8,7 @@ export default function OrderDetails(props) {
   return (
     <div className="ProductContainer">
       <div>
-        <h3 className="m-3 text-center fw-bold">OrderDetails</h3>
+        <h3 className="m-3 text-center fw-bold">Order Receipt</h3>
         <div>
           <span>Customer Name:</span>
           <input placeholder="search customer"></input>
@@ -17,8 +17,8 @@ export default function OrderDetails(props) {
           <span>Date: {new Date().toLocaleString() + ""}</span>
         </div>
         <div className="row">
-          <div className="col mt-4 fw-semibold">Product list:</div>
-          <div className="col mt-4 fw-semibold text-end">Sub-total</div>
+          <div className="col mt-4 fw-bolder fs-5">Product list:</div>
+          <div className="col mt-4 fw-semibold text-end fs-5">Sub-total</div>
         </div>
 
         <div>
@@ -28,27 +28,36 @@ export default function OrderDetails(props) {
         </div>
         {cartItems.map((x) => (
           <div key={x.product_id} className="row mt-3">
-            <div className="col">{x.product_name}</div>
-            <div className="col">
+            <div className="row text-center">
+              <div style={{ color: "#9c9c9c" }}>
+                stocks: {x.product_stocks - x.qty} available
+              </div>
+            </div>
+            <div className="col-md-5 fw-lighter">{x.product_name}</div>
+            <div className="col-md-auto px-1 text-center">
               <button onClick={() => onAdd(x)} className="add">
                 +
               </button>
+            </div>
+            <div className="col-md-auto px-0 text-center">{x.qty}</div>
+            <div className="col-md-auto px-1 text-center">
               <button onClick={() => onRemove(x)} className="remove">
                 -
               </button>
             </div>
-            <div className="col text-right">
-              {x.qty} x ₱{x.product_price}
+
+            <div className="col px-0 text-center">x ₱{x.product_price}</div>
+            <div className="col text-center text-center">
+              ₱ {x.qty * x.product_price}
             </div>
-            <div className="col">₱ {x.qty * x.product_price}</div>
           </div>
         ))}
         {cartItems.length !== 0 && (
           <>
             <hr></hr>
             <div className="row">
-              <div className="col fw-semibold">Total Amount:</div>
-              <div className="col fw-bolder text-end">
+              <div className="col fw-semibold fs-5">Total Amount:</div>
+              <div className="col fw-bolder text-end fs-5">
                 ₱ {itemsPrice.toFixed(2)}
               </div>
             </div>
