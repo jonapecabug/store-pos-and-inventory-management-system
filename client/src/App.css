@@ -98,7 +98,7 @@ span {
 
 /* Add Product */
 .ProductContainer {
-  width: 30%;
+  width: 32%;
   height: 100%;
   color: black;
   padding: 1rem;
@@ -109,7 +109,7 @@ span {
 
 /* Product List */
 .ProductList {
-  width: 70%;
+  width: 68%;
   height: 89%;
   color: black;
   padding: 10px;
@@ -150,12 +150,15 @@ table {
 }
 
 .add {
-  background-color: #04eb78;
+  background-color: rgb(156, 241, 221);
+  font-size: 1.2rem;
+  font-weight: bold;
   width: 1.5rem;
-  margin: 0.5rem;
 }
 
 .remove {
-  background-color: #fb4a40;
+  background-color: rgb(255, 173, 173);
+  font-size: 1.2rem;
+  font-weight: bold;
   width: 1.5rem;
 }
