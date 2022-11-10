@@ -30,7 +30,7 @@ export default function OrderDetails(props) {
           <div key={x.product_id} className="row mt-3">
             <div className="row text-center">
               <div style={{ color: "#9c9c9c" }}>
-                stocks: {x.product_stocks - x.qty} available
+                stocks: {x.stocks} available
               </div>
             </div>
             <div className="col-md-5 fw-lighter">{x.product_name}</div>
