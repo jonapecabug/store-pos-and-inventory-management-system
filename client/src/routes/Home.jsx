@@ -1,12 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import OrderDetails from "../components/OrderDetails";
+import Popup from "../components/Popup";
 import ProductList from "../components/ProductList";
 import SideNavigation from "../components/SideNavigation";
 import { ProductsContextProvider } from "../context/ProductsContext";
 
 const Home = ({ setAuth }) => {
   const [cartItems, setCartItems] = useState([]);
+
+  //adding PRODUCTS TO CART
   const onAdd = (product) => {
     const exist = cartItems.find((x) => x.product_id === product.product_id);
     // console.log(exist);
@@ -16,15 +19,19 @@ const Home = ({ setAuth }) => {
       setCartItems(
         cartItems.map((x) =>
           x.product_id === product.product_id
-            ? { ...exist, qty: exist.qty + 1 }
+            ? { ...exist, qty: exist.qty + 1, stocks: exist.stocks - 1 }
             : x
         )
       );
     } else {
-      setCartItems([...cartItems, { ...product, qty: 1 }]);
+      setCartItems([
+        ...cartItems,
+        { ...product, qty: 1, stocks: product.product_stocks - 1 },
+      ]);
     }
   };
 
+  // REMOVING PRODUCTS FROM CART
   const onRemove = (product) => {
     const exist = cartItems.find((x) => x.product_id === product.product_id);
     if (exist.qty === 1) {
@@ -35,7 +42,7 @@ const Home = ({ setAuth }) => {
       setCartItems(
         cartItems.map((x) =>
           x.product_id === product.product_id
-            ? { ...exist, qty: exist.qty - 1 }
+            ? { ...exist, qty: exist.qty - 1, stocks: exist.stocks + 1 }
             : x
         )
       );
@@ -46,6 +53,8 @@ const Home = ({ setAuth }) => {
     <ProductsContextProvider>
       <div className="App">
         <div className="home-wrapper">
+          <Popup onRemove={onRemove} cartItems={cartItems}></Popup>
+
           <SideNavigation setAuth={setAuth} />
           <ProductList onAdd={onAdd} />
           <OrderDetails
