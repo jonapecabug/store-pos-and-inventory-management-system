@@ -1,7 +1,7 @@
 import React from "react";
 import EditProduct from "../components/EditProduct";
 import SideNavigation from "../components/SideNavigation";
-import UpdateList from "../components/Updatelist";
+import ManageList from "../components/ManageList";
 import { ProductsContextProvider } from "../context/ProductsContext";
 
 const updateProducts = ({ setAuth }) => {
@@ -10,7 +10,7 @@ const updateProducts = ({ setAuth }) => {
       <div className="App">
         <div className="home-wrapper">
           <SideNavigation setAuth={setAuth} />
-          <UpdateList />
+          <ManageList />
           <EditProduct />
         </div>
       </div>

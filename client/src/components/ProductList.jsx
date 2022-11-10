@@ -23,7 +23,7 @@ const ProductList = (props) => {
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [products]);
+  }, [onAdd]);
 
   const sortedByName = () => {
     setSorted({

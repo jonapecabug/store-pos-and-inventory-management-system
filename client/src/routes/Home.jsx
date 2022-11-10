@@ -61,6 +61,7 @@ const Home = ({ setAuth }) => {
             onAdd={onAdd}
             onRemove={onRemove}
             cartItems={cartItems}
+            setCartItems={setCartItems}
           />
         </div>
       </div>

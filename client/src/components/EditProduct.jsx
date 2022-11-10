@@ -4,6 +4,7 @@ import ProductsFinder from "../apis/ProductsFinder";
 import { useNavigate, useParams } from "react-router-dom";
 
 const EditProduct = (props) => {
+  // const setProducts = props;
   const navigate = useNavigate();
   const { id } = useParams();
   //   console.log(id);
