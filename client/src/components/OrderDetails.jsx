@@ -2,13 +2,13 @@ import React from "react";
 import ProductsFinder from "../apis/ProductsFinder";
 
 export default function OrderDetails(props) {
-  const { cartItems, onAdd, onRemove } = props;
+  const { cartItems, setCartItems, onAdd, onRemove } = props;
   const itemsPrice = cartItems.reduce((a, c) => a + c.product_price * c.qty, 0);
   const numStocks = cartItems.map((n) => n.stocks);
   const numIDs = cartItems.map((x) => x.product_id);
 
   //UPDATE PRODUCT STOCKS
-  const handleSubmit = async (cartItems) => {
+  const handlePurchase = async (cartItems) => {
     for (let i = 0; i < numStocks.length; i++) {
       const curStock = numStocks[i];
       const curID = numIDs[i];
@@ -20,6 +20,20 @@ export default function OrderDetails(props) {
       // console.log("stock:" + curStock);
       // console.log("ID:" + curID);
     }
+    setCartItems([]);
+  };
+
+  const handleCredit = async (cartItems) => {
+    for (let i = 0; i < numStocks.length; i++) {
+      const curStock = numStocks[i];
+      const curID = numIDs[i];
+
+      const updatedStocks = await ProductsFinder.put(`/stocks/${curID}`, {
+        product_stocks: curStock,
+      });
+      console.log(updatedStocks);
+    }
+    setCartItems([]);
   };
 
   return (
@@ -82,7 +96,7 @@ export default function OrderDetails(props) {
             <div className="row mt-5">
               <div className="col">
                 <button
-                  onClick={handleSubmit}
+                  onClick={handleCredit}
                   className="btn btn-secondary btn-lg"
                 >
                   Add to Credit
@@ -90,7 +104,7 @@ export default function OrderDetails(props) {
               </div>
               <div className="col text-end">
                 <button
-                  onClick={handleSubmit}
+                  onClick={handlePurchase}
                   className="btn btn-success btn-lg"
                 >
                   Purchase

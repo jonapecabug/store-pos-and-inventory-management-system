@@ -8,6 +8,7 @@ const ManageList = (props) => {
   const { products, setProducts } = useContext(ProductsContext);
   const [searchPhrase, setSearchPhrase] = useState("");
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -18,7 +19,7 @@ const ManageList = (props) => {
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setProducts]);
 
   const handleDelete = async (product_id) => {
     try {
