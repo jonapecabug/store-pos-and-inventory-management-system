@@ -1,9 +1,26 @@
 import React from "react";
+import ProductsFinder from "../apis/ProductsFinder";
 
 export default function OrderDetails(props) {
   const { cartItems, onAdd, onRemove } = props;
-  // console.log(cartItems);
   const itemsPrice = cartItems.reduce((a, c) => a + c.product_price * c.qty, 0);
+  const numStocks = cartItems.map((n) => n.stocks);
+  const numIDs = cartItems.map((x) => x.product_id);
+
+  //UPDATE PRODUCT STOCKS
+  const handleSubmit = async (cartItems) => {
+    for (let i = 0; i < numStocks.length; i++) {
+      const curStock = numStocks[i];
+      const curID = numIDs[i];
+
+      const updatedStocks = await ProductsFinder.put(`/stocks/${curID}`, {
+        product_stocks: curStock,
+      });
+      console.log(updatedStocks);
+      // console.log("stock:" + curStock);
+      // console.log("ID:" + curID);
+    }
+  };
 
   return (
     <div className="ProductContainer">
@@ -64,12 +81,20 @@ export default function OrderDetails(props) {
             <hr></hr>
             <div className="row mt-5">
               <div className="col">
-                <button className="btn btn-secondary btn-lg">
+                <button
+                  onClick={handleSubmit}
+                  className="btn btn-secondary btn-lg"
+                >
                   Add to Credit
                 </button>
               </div>
               <div className="col text-end">
-                <button className="btn btn-success btn-lg">Purchase</button>
+                <button
+                  onClick={handleSubmit}
+                  className="btn btn-success btn-lg"
+                >
+                  Purchase
+                </button>
               </div>
             </div>
           </>

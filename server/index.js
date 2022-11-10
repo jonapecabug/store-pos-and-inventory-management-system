@@ -88,6 +88,22 @@ app.put("/products/:id", async (req, res) => {
   }
 });
 
+//Update stocks of a product
+app.put("/stocks/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { product_stocks } = req.body;
+    const updateStocks = await pool.query(
+      "UPDATE products SET product_stocks = $1 WHERE product_id = $2 RETURNING *;",
+      [product_stocks, id]
+    );
+    // console.log(updateStocks.rows[0]);
+    res.json(updateStocks.rows[0]);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
 //delete a product
 app.delete("/products/:id", async (req, res) => {
   try {
