@@ -21,6 +21,7 @@ CREATE TABLE customer_purchase(
     fk_customer_id INT FOREIGN KEY,
     purchase_date DATE NOT NULL,
     total_amount NUMERIC
+    purchase_list 
 )
 
 CREATE TABLE purchase_list(
