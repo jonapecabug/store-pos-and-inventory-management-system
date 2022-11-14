@@ -5,6 +5,7 @@ import Popup from "../components/Popup";
 import ProductList from "../components/ProductList";
 import SideNavigation from "../components/SideNavigation";
 import { ProductsContextProvider } from "../context/ProductsContext";
+import { CustomerContextProvider } from "../context/CustomerContext";
 
 const Home = ({ setAuth }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -54,15 +55,16 @@ const Home = ({ setAuth }) => {
       <div className="App">
         <div className="home-wrapper">
           <Popup onRemove={onRemove} cartItems={cartItems}></Popup>
-
           <SideNavigation setAuth={setAuth} />
           <ProductList onAdd={onAdd} />
-          <OrderDetails
-            onAdd={onAdd}
-            onRemove={onRemove}
-            cartItems={cartItems}
-            setCartItems={setCartItems}
-          />
+          <CustomerContextProvider>
+            <OrderDetails
+              onAdd={onAdd}
+              onRemove={onRemove}
+              cartItems={cartItems}
+              setCartItems={setCartItems}
+            />
+          </CustomerContextProvider>
         </div>
       </div>
     </ProductsContextProvider>

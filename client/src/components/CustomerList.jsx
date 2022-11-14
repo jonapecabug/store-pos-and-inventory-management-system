@@ -6,7 +6,6 @@ import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { CustomerContext } from "../context/CustomerContext";
 
 const CustomerList = (props) => {
-  const { onAdd } = props;
   // fetch the data from the server
   const { customer, setCustomer } = useContext(CustomerContext);
   // const { products, setProducts } = useContext(ProductsContext);
@@ -107,9 +106,7 @@ const CustomerList = (props) => {
           <td>₱ {customer.credit_num}</td>
           <td>{customer.customer_status}</td>
           <td>
-            <button onClick={() => onAdd(customer)} className="btn btn-success">
-              Update
-            </button>
+            <button className="btn btn-success">Update</button>
           </td>
         </tr>
       );
