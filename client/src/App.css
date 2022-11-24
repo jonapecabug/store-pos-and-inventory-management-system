@@ -184,7 +184,7 @@ table {
 
 .popup-inner {
   position: relative;
-  padding: 32px;
+  padding: 30px;
   width: 100%;
   max-width: 500px;
   background-color: #ffffff;
@@ -223,10 +223,6 @@ table {
   background-color: #ffffff;
 }
 
-.overlay {
-  z-index: 9;
-}
-
 img {
   display: block;
   margin-bottom: -40px;
@@ -234,4 +230,9 @@ img {
   margin-right: auto;
   width: 500px;
   height: 150px;
+}
+
+.InputCustomer {
+  text-align: center;
+  padding-bottom: 0.3rem;
 }
