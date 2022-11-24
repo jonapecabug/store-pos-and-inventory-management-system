@@ -96,7 +96,7 @@ export default function OrderDetails(props) {
   };
 
   return (
-    <div className="ProductContainer overlay">
+    <div className="ProductContainer">
       <ReceiptPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <div id="ReceiptImage"></div>
       </ReceiptPopup>
@@ -113,6 +113,7 @@ export default function OrderDetails(props) {
             onChange={onChange}
             type="text"
             placeholder="search customer"
+            className="InputCustomer"
           ></input>
 
           <div className="dropdown">
@@ -193,10 +194,12 @@ export default function OrderDetails(props) {
         {cartItems.length !== 0 && (
           <>
             <hr />
-            <div className="row mt-3">
+            <div className="row mt-3 mb-2">
               <div className="col fw-semibold fs-5">Total Amount:</div>
               <div className="col fw-bolder text-end fs-5">
                 ₱ {itemsPrice.toFixed(2)}
+                <br />
+                <br />
               </div>
             </div>
           </>
