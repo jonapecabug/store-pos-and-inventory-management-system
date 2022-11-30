@@ -53,6 +53,13 @@ CREATE TABLE users(
     user_password VARCHAR(255) NOT NULL
 ); 
 
+CREATE TABLE users(
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    user_email VARCHAR(255) NOT NULL,
+    user_password VARCHAR(255) NOT NULL
+); 
+
 INSERT INTO users(username, user_email, user_password) 
 VALUES('JonapeCabug_v1','cabugjonape@gmail.com','password');
 
