@@ -1,2 +1,5 @@
 /app.yaml
 /.gcloudignore
+
+/server/app.yaml
+/server/.gcloudignore
